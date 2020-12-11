@@ -14,6 +14,10 @@ public class ParkingMapper {
 
 	private static final ModelMapper MODEL_MAPPER = new ModelMapper();
 
+	public Parking toParking(ParkingDTO dto) {
+		return MODEL_MAPPER.map(dto, Parking.class);
+	}
+
 	public ParkingDTO toParkingDTO(Parking parking) {
 		return MODEL_MAPPER.map(parking, ParkingDTO.class);
 	}

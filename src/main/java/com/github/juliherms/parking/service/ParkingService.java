@@ -1,5 +1,6 @@
 package com.github.juliherms.parking.service;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,17 @@ public class ParkingService {
 
 	public Parking findById(String id) {
 		return parkingMap.get(id);
+	}
+
+	public Parking create(Parking parking) {
+
+		String uuid = getUUID();
+		parking.setId(uuid);
+		parking.setEntryDate(LocalDateTime.now());
+
+		parkingMap.put(uuid, parking);
+
+		return parking;
 	}
 
 	static {
