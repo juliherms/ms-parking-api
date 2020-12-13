@@ -2,9 +2,15 @@ package com.github.juliherms.parking.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity(name = "TB_PARKING")
 public class Parking {
 
+	@Id
 	private String id;
+	
 	private String license;
 	private String state;
 	private String model;

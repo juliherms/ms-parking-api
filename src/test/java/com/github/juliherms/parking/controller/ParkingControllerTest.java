@@ -32,8 +32,7 @@ public class ParkingControllerTest {
 		.when()
 		.get("/parkings")
 		.then()
-		.statusCode(HttpStatus.OK.value())
-		.body("license[0]",Matchers.equalTo("PGP-1111"));
+		.statusCode(HttpStatus.OK.value());
 		
 	}
 	
@@ -54,8 +53,5 @@ public class ParkingControllerTest {
 			.then()
 			.statusCode(HttpStatus.CREATED.value())
 			.body("license",Matchers.equalTo("WRT-5555"));
-		
-		
-		
 	}
 }
