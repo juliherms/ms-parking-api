@@ -33,7 +33,7 @@ public class ParkingService {
 	}
 
 	public void delete(String id) {
-		
+
 		Parking p = findById(id);
 		parkingMap.remove(p.getId());
 	}
@@ -47,6 +47,23 @@ public class ParkingService {
 		parkingMap.put(uuid, parking);
 
 		return parking;
+	}
+	
+	public Parking exit(String id) {
+		
+		//recuperar o parking
+		//atualizar data de saida
+		//calcular o valor
+		
+		return null;
+	}
+
+	public Parking update(String id,Parking p) {
+
+		Parking actualParking = findById(id);
+		actualParking.setColor(p.getColor());
+		parkingMap.replace(id,actualParking);
+		return actualParking;
 	}
 
 	static {
