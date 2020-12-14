@@ -80,4 +80,11 @@ public class ParkingController {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@PostMapping("/{id}")
+	public ResponseEntity<ParkingDTO> exit(@PathVariable String id){
+		
+		Parking parking = service.exit(id);
+		return ResponseEntity.ok(parkingMapper.toParkingDTO(parking));
+	}
 }

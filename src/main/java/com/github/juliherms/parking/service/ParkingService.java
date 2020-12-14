@@ -6,6 +6,8 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.github.juliherms.parking.exception.ParkingNotFoundException;
 import com.github.juliherms.parking.model.Parking;
@@ -16,13 +18,18 @@ public class ParkingService {
 
 	@Autowired
 	private ParkingRepository repo;
+	
+	@Autowired
+	private ParkingCheckOutService parkingCheckOutService;
 
+	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	public List<Parking> findAll() {
 		
 		return repo.findAll();
 		
 	}
 
+	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	public Parking findById(String id) {
 
 		Parking p = repo.findById(id).orElseThrow( () ->
@@ -32,12 +39,14 @@ public class ParkingService {
 		return p;
 	}
 
+	@Transactional
 	public void delete(String id) {
 
 		findById(id);
 		repo.deleteById(id);
 	}
 
+	@Transactional
 	public Parking create(Parking parking) {
 
 		String uuid = getUUID();
@@ -49,15 +58,19 @@ public class ParkingService {
 		return parking;
 	}
 
+	@Transactional
 	public Parking exit(String id) {
 
-		// recuperar o parking
-		// atualizar data de saida
-		// calcular o valor
-
-		return null;
+		Parking p = findById(id);
+		p.setExitDate(LocalDateTime.now());
+		p.setBill(parkingCheckOutService.getBill(p));
+		
+		repo.save(p);
+		
+		return p;
 	}
 
+	@Transactional
 	public Parking update(String id, Parking p) {
 
 		Parking actualParking = findById(id);
