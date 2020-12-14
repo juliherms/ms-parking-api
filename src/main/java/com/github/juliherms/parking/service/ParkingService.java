@@ -1,41 +1,41 @@
 package com.github.juliherms.parking.service;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.juliherms.parking.exception.ParkingNotFoundException;
 import com.github.juliherms.parking.model.Parking;
+import com.github.juliherms.parking.repository.ParkingRepository;
 
 @Service
 public class ParkingService {
 
-	private static Map<String, Parking> parkingMap = new HashMap<>();
+	@Autowired
+	private ParkingRepository repo;
 
 	public List<Parking> findAll() {
-		return parkingMap.values().stream().collect(Collectors.toList());
+		
+		return repo.findAll();
+		
 	}
 
 	public Parking findById(String id) {
 
-		Parking p = parkingMap.get(id);
-
-		if (p == null) {
-			throw new ParkingNotFoundException(id);
-		}
-
+		Parking p = repo.findById(id).orElseThrow( () ->
+				new ParkingNotFoundException(id)
+				);
+		
 		return p;
 	}
 
 	public void delete(String id) {
 
-		Parking p = findById(id);
-		parkingMap.remove(p.getId());
+		findById(id);
+		repo.deleteById(id);
 	}
 
 	public Parking create(Parking parking) {
@@ -44,36 +44,32 @@ public class ParkingService {
 		parking.setId(uuid);
 		parking.setEntryDate(LocalDateTime.now());
 
-		parkingMap.put(uuid, parking);
-
+		repo.save(parking);
+		
 		return parking;
 	}
-	
+
 	public Parking exit(String id) {
-		
-		//recuperar o parking
-		//atualizar data de saida
-		//calcular o valor
-		
+
+		// recuperar o parking
+		// atualizar data de saida
+		// calcular o valor
+
 		return null;
 	}
 
-	public Parking update(String id,Parking p) {
+	public Parking update(String id, Parking p) {
 
 		Parking actualParking = findById(id);
+		//update fields
 		actualParking.setColor(p.getColor());
-		parkingMap.replace(id,actualParking);
+		actualParking.setState(p.getState());
+		actualParking.setModel(p.getModel());
+		actualParking.setLicense(p.getLicense());
+		
+		repo.save(actualParking);
+		
 		return actualParking;
-	}
-
-	static {
-		String id = getUUID();
-		String id1 = getUUID();
-		Parking parking = new Parking(id, "PGP-1111", "PE", "CELTA", "PRETO");
-		Parking parking1 = new Parking(id1, "PGP-1620", "PE", "CRONOS", "BRANCO");
-
-		parkingMap.put(id, parking);
-		parkingMap.put(id1, parking1);
 	}
 
 	private static String getUUID() {
