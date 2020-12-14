@@ -13,45 +13,35 @@ import com.github.juliherms.parking.dto.ParkingCreateDTO;
 import io.restassured.RestAssured;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ParkingControllerTest {
+public class ParkingControllerTest extends AbstractContainerBase {
 
 	@LocalServerPort
 	private int randomPort;
 
 	@BeforeEach
 	public void setUpTest() {
-		
+
 		System.out.println(randomPort);
 		RestAssured.port = randomPort;
 	}
-	
+
 	@Test
 	void whenFindAllThenCheckResult() {
-		
-		RestAssured.given()
-		.when()
-		.get("/parkings")
-		.then()
-		.statusCode(HttpStatus.OK.value());
-		
+
+		RestAssured.given().when().get("/parkings").then().statusCode(HttpStatus.OK.value());
+
 	}
-	
+
 	@Test
 	void whenCreateThenCheckIsCreated() {
-		
+
 		ParkingCreateDTO createDTO = new ParkingCreateDTO();
 		createDTO.setColor("Amarelo");
 		createDTO.setLicense("WRT-5555");
 		createDTO.setModel("Brasilia");
 		createDTO.setState("SP");
-		
-		RestAssured.given()
-			.when()
-			.contentType(MediaType.APPLICATION_JSON_VALUE)
-			.body(createDTO)
-			.post("/parkings")
-			.then()
-			.statusCode(HttpStatus.CREATED.value())
-			.body("license",Matchers.equalTo("WRT-5555"));
+
+		RestAssured.given().when().contentType(MediaType.APPLICATION_JSON_VALUE).body(createDTO).post("/parkings")
+				.then().statusCode(HttpStatus.CREATED.value()).body("license", Matchers.equalTo("WRT-5555"));
 	}
 }
