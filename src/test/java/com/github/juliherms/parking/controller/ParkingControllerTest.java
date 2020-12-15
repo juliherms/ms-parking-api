@@ -28,7 +28,14 @@ public class ParkingControllerTest extends AbstractContainerBase {
 	@Test
 	void whenFindAllThenCheckResult() {
 
-		RestAssured.given().when().get("/parkings").then().statusCode(HttpStatus.OK.value());
+		RestAssured
+			.given()
+			.auth()
+			.basic("user","Test@123456")
+			.when()
+			.get("/parkings")
+			.then()
+			.statusCode(HttpStatus.OK.value());
 
 	}
 
@@ -41,7 +48,16 @@ public class ParkingControllerTest extends AbstractContainerBase {
 		createDTO.setModel("Brasilia");
 		createDTO.setState("SP");
 
-		RestAssured.given().when().contentType(MediaType.APPLICATION_JSON_VALUE).body(createDTO).post("/parkings")
-				.then().statusCode(HttpStatus.CREATED.value()).body("license", Matchers.equalTo("WRT-5555"));
+		RestAssured
+			.given()
+			.when()
+			.auth().basic("user","Test@123456")
+			.when()
+			.contentType(MediaType.APPLICATION_JSON_VALUE)
+			.body(createDTO)
+			.post("/parkings")
+			.then()
+			.statusCode(HttpStatus.CREATED.value())
+			.body("license", Matchers.equalTo("WRT-5555"));
 	}
 }
