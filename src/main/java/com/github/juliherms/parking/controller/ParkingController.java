@@ -1,5 +1,6 @@
 package com.github.juliherms.parking.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +20,28 @@ import com.github.juliherms.parking.dto.ParkingDTO;
 import com.github.juliherms.parking.mapper.ParkingMapper;
 import com.github.juliherms.parking.model.Parking;
 import com.github.juliherms.parking.service.ParkingService;
+import com.github.juliherms.parking.util.DateUtil;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.log4j.Log4j2;
 
+/**
+ * Class responsible to provide Parking End Point
+ * @author jlv
+ *
+ */
 @RestController
 @RequestMapping("/parkings")
 @Api(tags = "Parking")
+@Log4j2
 public class ParkingController {
 
 	@Autowired
 	private ParkingService service;
+	
+	@Autowired
+	private DateUtil dateUtil;
 
 	@Autowired
 	private ParkingMapper parkingMapper;
@@ -37,6 +49,9 @@ public class ParkingController {
 	@GetMapping
 	@ApiOperation("Find all parkings")
 	public ResponseEntity<List<ParkingDTO>> findAll() {
+		
+		//TODO log
+		log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
 
 		List<Parking> parkingList = service.findAll();
 		List<ParkingDTO> result = parkingMapper.toParkingDTOList(parkingList);

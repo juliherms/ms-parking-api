@@ -10,6 +10,11 @@ import com.github.juliherms.parking.dto.ParkingCreateDTO;
 import com.github.juliherms.parking.dto.ParkingDTO;
 import com.github.juliherms.parking.model.Parking;
 
+/**
+ * Class responsible to convert Parking to ParkingDTO
+ * @author jlv
+ *
+ */
 @Component
 public class ParkingMapper {
 
