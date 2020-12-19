@@ -1,5 +1,10 @@
 package com.github.juliherms.parking.dto;
 
+/**
+ * Class represents DTO to Create Parking
+ * @author jlv
+ *
+ */
 public class ParkingCreateDTO {
 
 	private String license;

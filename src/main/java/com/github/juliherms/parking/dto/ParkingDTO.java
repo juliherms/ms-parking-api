@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+//Don't show properties null
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ParkingDTO {
 
