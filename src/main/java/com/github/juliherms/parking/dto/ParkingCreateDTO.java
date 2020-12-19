@@ -1,5 +1,8 @@
 package com.github.juliherms.parking.dto;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 /**
  * Class represents DTO to Create Parking
  * @author jlv
@@ -7,7 +10,10 @@ package com.github.juliherms.parking.dto;
  */
 public class ParkingCreateDTO {
 
+	@NotEmpty(message = "The Parking license cannot be empty")
+	@NotNull(message = "The Parking license cannot be null")
 	private String license;
+	
 	private String state;
 	private String model;
 	private String color;

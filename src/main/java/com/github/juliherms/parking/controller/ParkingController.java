@@ -3,6 +3,8 @@ package com.github.juliherms.parking.controller;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -93,7 +95,7 @@ public class ParkingController {
 
 
 	@PostMapping
-	public ResponseEntity<ParkingDTO> create(@RequestBody ParkingCreateDTO dto) {
+	public ResponseEntity<ParkingDTO> create(@RequestBody @Valid ParkingCreateDTO dto) {
 
 		Parking p = parkingMapper.toParkingCreate(dto);
 		Parking parkingCreated = service.create(p);
@@ -104,7 +106,7 @@ public class ParkingController {
 	
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<ParkingDTO> update(@PathVariable String id, @RequestBody ParkingCreateDTO dto) {
+	public ResponseEntity<ParkingDTO> update(@PathVariable String id, @RequestBody @Valid ParkingCreateDTO dto) {
 
 		Parking p = parkingMapper.toParkingCreate(dto);
 		Parking parkingCreated = service.update(id,p);

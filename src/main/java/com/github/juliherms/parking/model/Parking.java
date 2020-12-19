@@ -2,6 +2,7 @@ package com.github.juliherms.parking.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -10,11 +11,16 @@ public class Parking {
 
 	@Id
 	private String id;
-	
+
+	@Column(nullable = false)
 	private String license;
+	
+	@Column(nullable = false)
 	private String state;
+	
 	private String model;
 	private String color;
+	
 	private LocalDateTime entryDate;
 	private LocalDateTime exitDate;
 	private Double bill;
