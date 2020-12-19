@@ -74,6 +74,7 @@ public class ParkingService {
 	public Parking update(String id, Parking p) {
 
 		Parking actualParking = findById(id);
+		
 		//update fields
 		actualParking.setColor(p.getColor());
 		actualParking.setState(p.getState());
