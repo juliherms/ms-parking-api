@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.juliherms.parking.exception.CarNotFoundException;
 import com.github.juliherms.parking.exception.ParkingNotFoundException;
 import com.github.juliherms.parking.model.Parking;
 import com.github.juliherms.parking.repository.ParkingRepository;
@@ -28,6 +29,23 @@ public class ParkingService {
 		return repo.findAll();
 		
 	}
+	
+	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+	public List<Parking> findByModel(String model){
+		
+		return repo.findByModel(model);
+	}
+	
+	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+	public Parking findByLicense(String license) {
+	
+		Parking p = repo.findByLicense(license).orElseThrow( () ->
+				new CarNotFoundException(license)
+				);
+		
+		return p;
+	}
+	
 
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 	public Parking findById(String id) {

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.juliherms.parking.dto.ParkingCreateDTO;
@@ -58,6 +59,17 @@ public class ParkingController {
 
 		return ResponseEntity.ok(result);
 	}
+	
+	@ApiOperation("Find all parkings/car by model")
+	@GetMapping(path="/car")
+	public ResponseEntity<List<ParkingDTO>> findByModel(@RequestParam(name = "model") String model) {
+		
+		List<Parking> parkingList = service.findByModel(model);
+		List<ParkingDTO> result = parkingMapper.toParkingDTOList(parkingList);
+
+		return ResponseEntity.ok(result);
+	}
+
 
 	@ApiOperation("Find Parking by Id")
 	@GetMapping("{id}")
@@ -68,6 +80,17 @@ public class ParkingController {
 
 		return ResponseEntity.ok(parkingDTO);
 	}
+	
+	@ApiOperation("Find Parking by License")
+	@GetMapping(path="/find")
+	public ResponseEntity<ParkingDTO> findByLicense(@RequestParam(required = true, name = "license") String license) {
+
+		Parking parking = service.findByLicense(license);
+		ParkingDTO parkingDTO = parkingMapper.toParkingDTO(parking);
+
+		return ResponseEntity.ok(parkingDTO);
+	}
+
 
 	@PostMapping
 	public ResponseEntity<ParkingDTO> create(@RequestBody ParkingCreateDTO dto) {
