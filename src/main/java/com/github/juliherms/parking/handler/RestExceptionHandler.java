@@ -24,14 +24,11 @@ public class RestExceptionHandler {
 			ParkingNotFoundException parkingNotFoundException) {
 
 		return new ResponseEntity<>(
-				NotFoundExceptionDetails.builder()
-					.timestamp(LocalDateTime.now())
-					.status(HttpStatus.NOT_FOUND.value())
-					.title("No Data Found")
-					.details(parkingNotFoundException.getMessage())
-					.developerMessage("Please check register in the database. Table Parking")
-					.build(), HttpStatus.NOT_FOUND);
-		
+				NotFoundExceptionDetails.builder().timestamp(LocalDateTime.now()).status(HttpStatus.NOT_FOUND.value())
+						.title("No Data Found").details(parkingNotFoundException.getMessage())
+						.developerMessage("Please check register in the database. Table Parking").build(),
+				HttpStatus.NOT_FOUND);
+
 	}
 
 }
