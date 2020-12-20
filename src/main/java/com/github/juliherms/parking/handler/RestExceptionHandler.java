@@ -19,7 +19,7 @@ import com.github.juliherms.parking.exception.ExceptionDetails;
 import com.github.juliherms.parking.exception.NotFoundExceptionDetails;
 import com.github.juliherms.parking.exception.ParkingNotFoundException;
 import com.github.juliherms.parking.exception.ValidationExceptionDetails;
-
+	
 /**
  * Class responsible to intercept all Controllers
  * 
