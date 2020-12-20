@@ -78,6 +78,19 @@ public class ParkingRepositoryTest {
 	}
 	
 	@Test
+	@DisplayName("Find Parking By License Unsucessful")
+	public void findByLicense_ReturnParkingUnsucessful() {
+		
+		Parking p = createParking();
+		p.setLicense("XXXX-1111");
+		this.repo.save(p);
+
+		Optional<Parking> parkingOptional = this.repo.findByLicense("XXXY-1111");
+		
+		Assertions.assertThat(parkingOptional).isEmpty();
+	}
+	
+	@Test
 	@DisplayName("List alls parkings")
 	public void listAllParkingsSucessful() {
 		
