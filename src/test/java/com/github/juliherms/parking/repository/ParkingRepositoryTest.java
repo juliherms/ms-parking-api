@@ -1,6 +1,7 @@
 package com.github.juliherms.parking.repository;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.assertj.core.api.Assertions;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import com.github.juliherms.parking.model.Parking;
+
 /**
  * Class responsible to test ParkingRepository
  * @author jlv
@@ -46,6 +48,19 @@ public class ParkingRepositoryTest {
 		Assertions.assertThat(savedParking).isNotNull();
 		Assertions.assertThat(savedParking.getId()).isNotNull();
 		Assertions.assertThat(savedParking.getLicense()).isEqualTo(p.getLicense());
+	}
+	
+	@Test
+	@DisplayName("Remove parking when successful")
+	public void save_RemovesParking_WhenSuccessful() {
+		
+		Parking p = createParking();
+		Parking savedParking = this.repo.save(p);
+
+		this.repo.delete(savedParking);
+		Optional<Parking> parkingOptional = this.repo.findById(savedParking.getId());
+		
+		Assertions.assertThat(parkingOptional).isEmpty();
 	}
 	
 	private Parking createParking() {
