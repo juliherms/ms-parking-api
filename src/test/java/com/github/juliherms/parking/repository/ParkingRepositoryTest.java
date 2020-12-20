@@ -1,6 +1,7 @@
 package com.github.juliherms.parking.repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -61,6 +62,33 @@ public class ParkingRepositoryTest {
 		Optional<Parking> parkingOptional = this.repo.findById(savedParking.getId());
 		
 		Assertions.assertThat(parkingOptional).isEmpty();
+	}
+	
+	@Test
+	@DisplayName("Find Parking By License Sucessful")
+	public void findByLicense_ReturnParkingSucessful() {
+		
+		Parking p = createParking();
+		p.setLicense("XXXX-1111");
+		this.repo.save(p);
+
+		Optional<Parking> parkingOptional = this.repo.findByLicense(p.getLicense());
+		
+		Assertions.assertThat(parkingOptional).isNotEmpty();
+	}
+	
+	@Test
+	@DisplayName("List alls parkings")
+	public void listAllParkingsSucessful() {
+		
+		Parking p = createParking();
+		Parking parkingSaved = this.repo.save(p);
+		
+		List<Parking> parkings = this.repo.findAll();
+		
+		Assertions.assertThat(parkings).isNotEmpty();
+		Assertions.assertThat(parkings).contains(parkingSaved);
+		
 	}
 	
 	private Parking createParking() {
