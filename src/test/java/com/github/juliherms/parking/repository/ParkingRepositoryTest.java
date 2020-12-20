@@ -25,8 +25,8 @@ public class ParkingRepositoryTest {
 	private ParkingRepository repo;
 	
 	@Test
-	@DisplayName("Save updates parking when successful")
-	public void save_UpdatesParking_WhenSuccessful() {
+	@DisplayName("Updates parking when successful")
+	public void update_UpdatesParking_WhenSuccessful() {
 		
 		Parking p = createParking();
 		Parking savedParking = this.repo.save(p);
@@ -52,7 +52,7 @@ public class ParkingRepositoryTest {
 	
 	@Test
 	@DisplayName("Remove parking when successful")
-	public void save_RemovesParking_WhenSuccessful() {
+	public void removesParking_WhenSuccessful() {
 		
 		Parking p = createParking();
 		Parking savedParking = this.repo.save(p);
