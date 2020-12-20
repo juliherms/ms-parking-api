@@ -1,7 +1,6 @@
 package com.github.juliherms.parking.dto;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 /**
  * Class represents DTO to Create Parking
@@ -11,7 +10,6 @@ import javax.validation.constraints.NotNull;
 public class ParkingCreateDTO {
 
 	@NotEmpty(message = "The Parking license cannot be empty")
-	@NotNull(message = "The Parking license cannot be null")
 	private String license;
 	
 	private String state;
