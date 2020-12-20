@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import com.github.juliherms.parking.dto.ParkingCreateDTO;
@@ -34,6 +35,12 @@ public class ParkingMapper {
 
 	public List<ParkingDTO> toParkingDTOList(List<Parking> parkingList) {
 		return parkingList.stream().map(this::toParkingDTO).collect(Collectors.toList());
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Page<ParkingDTO> converterPageEntityToDto(Page<Parking> parking) {
+		
+		return MODEL_MAPPER.map(parking, Page.class);
 	}
 
 }

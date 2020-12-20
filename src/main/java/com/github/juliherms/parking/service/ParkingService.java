@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,9 +26,9 @@ public class ParkingService {
 	private ParkingCheckOutService parkingCheckOutService;
 
 	@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
-	public List<Parking> findAll() {
+	public Page<Parking> findAll(Pageable pageable) {
 		
-		return repo.findAll();
+		return repo.findAll(pageable);
 		
 	}
 	

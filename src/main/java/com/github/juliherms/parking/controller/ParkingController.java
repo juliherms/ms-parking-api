@@ -6,6 +6,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -51,13 +53,13 @@ public class ParkingController {
 
 	@GetMapping
 	@ApiOperation("Find all parkings")
-	public ResponseEntity<List<ParkingDTO>> findAll() {
+	public ResponseEntity<Page<ParkingDTO>> list(Pageable pageable) {
 		
 		//TODO log
 		log.info(dateUtil.formatLocalDateTimeToDatabaseStyle(LocalDateTime.now()));
 
-		List<Parking> parkingList = service.findAll();
-		List<ParkingDTO> result = parkingMapper.toParkingDTOList(parkingList);
+		Page<Parking> parkingList = service.findAll(pageable);
+		Page<ParkingDTO> result = parkingMapper.converterPageEntityToDto(parkingList);
 
 		return ResponseEntity.ok(result);
 	}
