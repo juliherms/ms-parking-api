@@ -27,6 +27,7 @@ import com.github.juliherms.parking.model.Parking;
 import com.github.juliherms.parking.service.ParkingService;
 import com.github.juliherms.parking.util.DateUtil;
 
+import io.micrometer.core.annotation.Timed;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j2;
@@ -52,6 +53,7 @@ public class ParkingController {
 	private ParkingMapper parkingMapper;
 
 	@GetMapping
+	@Timed("get.parkings")
 	@ApiOperation("Find all parkings")
 	public ResponseEntity<Page<ParkingDTO>> list(Pageable pageable) {
 		
@@ -97,6 +99,7 @@ public class ParkingController {
 
 
 	@PostMapping
+	@Timed("create.parking")
 	public ResponseEntity<ParkingDTO> create(@RequestBody @Valid ParkingCreateDTO dto) {
 
 		Parking p = parkingMapper.toParkingCreate(dto);
