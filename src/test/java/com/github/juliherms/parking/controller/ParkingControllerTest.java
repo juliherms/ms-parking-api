@@ -2,6 +2,7 @@ package com.github.juliherms.parking.controller;
 
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
@@ -12,6 +13,11 @@ import com.github.juliherms.parking.dto.ParkingCreateDTO;
 
 import io.restassured.RestAssured;
 
+/**
+ * Class responsible to test integration with testContainer's
+ * @author jlv
+ *
+ */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ParkingControllerTest extends AbstractContainerBase {
 
@@ -26,6 +32,7 @@ public class ParkingControllerTest extends AbstractContainerBase {
 	}
 
 	@Test
+	@DisplayName("Test list all parkings sucess")
 	void whenFindAllThenCheckResult() {
 
 		RestAssured
@@ -40,6 +47,7 @@ public class ParkingControllerTest extends AbstractContainerBase {
 	}
 
 	@Test
+	@DisplayName("Test Create Parking sucess")
 	void whenCreateThenCheckIsCreated() {
 
 		ParkingCreateDTO createDTO = new ParkingCreateDTO();

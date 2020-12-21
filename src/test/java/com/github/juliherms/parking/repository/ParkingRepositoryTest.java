@@ -104,6 +104,8 @@ public class ParkingRepositoryTest {
 		
 	}
 	
+	//TODO implement test with exception
+	
 	private Parking createParking() {
 		
 		Parking p = new Parking();
