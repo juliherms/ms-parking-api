@@ -27,9 +27,12 @@ import com.github.juliherms.parking.model.Parking;
 import com.github.juliherms.parking.service.ParkingService;
 import com.github.juliherms.parking.util.DateUtil;
 
+import io.micrometer.core.annotation.Counted;
 import io.micrometer.core.annotation.Timed;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.extern.log4j.Log4j2;
 
 /**
@@ -100,6 +103,11 @@ public class ParkingController {
 
 	@PostMapping
 	@Timed("create.parking")
+	@Counted("create.counted.parking")
+	@ApiOperation(value="create parking for cars", response = ParkingDTO.class)
+	@ApiResponses(value = {
+			@ApiResponse(code=201,message = "CREATED")
+			})
 	public ResponseEntity<ParkingDTO> create(@RequestBody @Valid ParkingCreateDTO dto) {
 
 		Parking p = parkingMapper.toParkingCreate(dto);

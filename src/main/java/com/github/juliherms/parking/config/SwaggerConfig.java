@@ -17,6 +17,11 @@ import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * Class responsible to configure Swagger API Documentation
+ * @author jlv
+ *
+ */
 @Component
 @EnableSwagger2
 public class SwaggerConfig {
@@ -28,6 +33,7 @@ public class SwaggerConfig {
 				.apis(RequestHandlerSelectors.basePackage("com.github.juliherms.parking"))
 				.build()
 				.apiInfo(metaData())
+				.useDefaultResponseMessages(false)
 				.securityContexts(Arrays.asList(getSecurityContext()))
                 .securitySchemes(Arrays.asList(basicAuthScheme()));
 	}
