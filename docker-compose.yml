@@ -1,6 +1,7 @@
 version: '3.7'
 
 services:
+
   #Postgres Database 
   postgres-database: 
     container_name: postgres-database-parking
@@ -25,9 +26,20 @@ services:
      - "--config.file=/etc/prometheus/prometheus.yml"
      ports:
      - 9090:9090  
-  
+     
+  #Grafana for diplay graphics 
   grafana:
      image: grafana/grafana:latest
      container_name: grafana
      ports:
      - 3000:3000
+     
+  #Sonarqube for test coverage
+  sonar:
+    container_name: sonar
+    image: sonarqube
+    ports:
+     - 9000:9000
+     - 9092:9092  
+  
+ 
