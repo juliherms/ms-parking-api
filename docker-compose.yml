@@ -33,7 +33,20 @@ services:
      container_name: grafana
      ports:
      - 3000:3000
-
+     
+  #jenkins for automatic build
+  jenkins: 
+    container_name: jenkins
+    image: jenkins_custom:latest
+    build:
+      context: ./
+      dockerfile: jenkins/Dockerfile
+    ports:
+      - 8080:8080
+    volumes:
+    - jenkins_home:/var/jenkins_home 
+    - jenkins_backup:/srv/backup
+    
   #Sonarqube for test coverage
   sonarQube:
     container_name: sonarQube
@@ -78,5 +91,7 @@ volumes:
   sonarqube_bundled-plugins:
   postgresql:
   postgresql_data:
+  jenkins_home: 
+  jenkins_backup:
   
  
