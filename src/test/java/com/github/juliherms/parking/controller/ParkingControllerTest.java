@@ -21,9 +21,6 @@ import io.restassured.RestAssured;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ParkingControllerTest extends AbstractContainerBase  {
 
-	@Test
-	void contextLoads() {
-	}
 	@LocalServerPort
 	private int randomPort;
 
@@ -35,7 +32,7 @@ public class ParkingControllerTest extends AbstractContainerBase  {
 	}
 
 	@Test
-	@DisplayName("Test list all parkings sucess")
+	@DisplayName("Test list all parkings success")
 	void whenFindAllThenCheckResult() {
 
 		RestAssured
@@ -48,9 +45,24 @@ public class ParkingControllerTest extends AbstractContainerBase  {
 			.statusCode(HttpStatus.OK.value());
 
 	}
+	
+	@Test
+	@DisplayName("Test lists all parkings and car by model error")
+	void whenFindCarWithoutModel() {
+		
+		RestAssured
+		.given()
+		.auth()
+		.basic("user","Test@123456")
+		.when()
+		.get("/parkings/car")
+		.then()
+		.statusCode(HttpStatus.BAD_REQUEST.value());
+		
+	}
 
 	@Test
-	@DisplayName("Test Create Parking sucess")
+	@DisplayName("Test Create Parking success")
 	void whenCreateThenCheckIsCreated() {
 
 		ParkingCreateDTO createDTO = new ParkingCreateDTO();

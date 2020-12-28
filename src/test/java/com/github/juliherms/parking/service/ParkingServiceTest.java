@@ -1,7 +1,6 @@
 package com.github.juliherms.parking.service;
 
 import java.time.LocalDateTime;
-import java.time.temporal.TemporalAmount;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.DisplayName;
