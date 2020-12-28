@@ -70,5 +70,5 @@ public class ParkingControllerTest extends AbstractContainerBase  {
 			.then()
 			.statusCode(HttpStatus.CREATED.value())
 			.body("license", Matchers.equalTo("WRT-5555"));
-	} 
+	}
 }
