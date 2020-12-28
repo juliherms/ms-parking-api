@@ -27,7 +27,6 @@ public class ParkingControllerTest extends AbstractContainerBase  {
 	@BeforeEach
 	public void setUpTest() {
 
-		System.out.println(randomPort);
 		RestAssured.port = randomPort;
 	}
 
@@ -48,7 +47,7 @@ public class ParkingControllerTest extends AbstractContainerBase  {
 	
 	@Test
 	@DisplayName("Test lists all parkings and car by model error")
-	void whenFindCarWithoutModel() {
+	void whenFindCarWithoutModelError() {
 		
 		RestAssured
 		.given()
@@ -60,7 +59,23 @@ public class ParkingControllerTest extends AbstractContainerBase  {
 		.statusCode(HttpStatus.BAD_REQUEST.value());
 		
 	}
-
+	
+	@Test
+	@DisplayName("Test lists all parkings and car by model success")
+	void whenFindCarWithModelSuccess() {
+		
+		RestAssured
+		.given()
+		.auth()
+		.basic("user","Test@123456")
+		.when()
+		.get("/parkings/car?model=celta")
+		.then()
+		.statusCode(HttpStatus.OK.value());
+		
+	}
+	
+	
 	@Test
 	@DisplayName("Test Create Parking success")
 	void whenCreateThenCheckIsCreated() {
