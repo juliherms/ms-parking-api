@@ -72,7 +72,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 					.fields(fields)
 					.fieldsMessage(fieldsMessage)
 					.build(),
-				HttpStatus.NOT_FOUND);
+				HttpStatus.BAD_REQUEST);
 	}
 	
 	/**

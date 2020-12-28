@@ -128,4 +128,27 @@ public class ParkingControllerTest extends AbstractContainerBase  {
 			.statusCode(HttpStatus.CREATED.value())
 			.body("license", Matchers.equalTo("WRT-5555"));
 	}
+	
+	@Test
+	@DisplayName("Test Create Parking Error")
+	void whenCreateThenCheckIsCreatedError() {
+
+		ParkingCreateDTO createDTO = new ParkingCreateDTO();
+		createDTO.setColor("Amarelo");
+		createDTO.setModel("Brasilia");
+		createDTO.setLicense(null);
+		createDTO.setState("SP");
+
+		RestAssured
+			.given()
+			.when()
+			.auth().basic("user","Test@123456")
+			.when()
+			.contentType(MediaType.APPLICATION_JSON_VALUE)
+			.body(createDTO)
+			.post("/parkings")
+			.then()
+			.statusCode(HttpStatus.BAD_REQUEST.value());
+			
+	}
 }
