@@ -61,6 +61,36 @@ public class ParkingControllerTest extends AbstractContainerBase  {
 	}
 	
 	@Test
+	@DisplayName("Test lists all parkings and car by license error")
+	void whenFindCarWithoutLicenseError() {
+		
+		RestAssured
+		.given()
+		.auth()
+		.basic("user","Test@123456")
+		.when()
+		.get("/parkings/find")
+		.then()
+		.statusCode(HttpStatus.BAD_REQUEST.value());
+		
+	}
+	
+	@Test
+	@DisplayName("Test lists all parkings and car by license success")
+	void whenFindCarWithLicenseSuccess() {
+		
+		RestAssured
+		.given()
+		.auth()
+		.basic("user","Test@123456")
+		.when()
+		.get("/parkings/find?license=PZH5451")
+		.then()
+		.statusCode(HttpStatus.NOT_FOUND.value());
+		
+	}
+	
+	@Test
 	@DisplayName("Test lists all parkings and car by model success")
 	void whenFindCarWithModelSuccess() {
 		
