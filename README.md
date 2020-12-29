@@ -80,7 +80,7 @@ In addition to configuring the yml file, it is necessary to enable the display o
 
 ### Grafana
 
-Grafana is a opens source dashboard observabiliy. In this case i used a prometheus datasource to feed the data to the grafana
+Grafana is a open source dashboard observability. In this case i used a prometheus datasource to feed the data to the grafana
 
 <img src="img/grafana.PNG">
 
