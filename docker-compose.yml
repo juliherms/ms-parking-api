@@ -93,7 +93,5 @@ volumes:
   sonarqube_bundled-plugins:
   postgresql:
   postgresql_data:
- # jenkins_home: 
- # jenkins_backup:
   
  

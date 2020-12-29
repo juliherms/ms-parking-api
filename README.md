@@ -32,16 +32,6 @@ Application example using spring boot responsible for controlling vehicle parkin
 
 - The project follows [**CloudNative**](https://www.cncf.io/) recommendations and The [**twelve-factor app**](https://12factor.net/) . 
 
-
-### Challenges in microservices architecture
-
-- Configuration Management
-- Dynamic Scalling Up and Down
-- Load Distribution
-- Visibility and Monitoring
-- Common Feature Implementation
-- Fault Tolerance
-
 ## Solution
 
 ### Services
@@ -86,6 +76,11 @@ In addition to configuring the yml file, it is necessary to enable the display o
 
 <img src="img/prometheus.PNG">
 
+### Grafana
+
+Grafana is a opens source dashboard observabiliy. In this case i used a prometheus datasource to feed the data to the grafana
+
+<img src="img/grafana.PNG">
 
 ### Setup Containers
 
