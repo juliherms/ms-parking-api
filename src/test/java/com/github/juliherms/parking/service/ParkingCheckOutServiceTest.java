@@ -42,7 +42,7 @@ public class ParkingCheckOutServiceTest {
 	
 	void calcTaxAfterOneDaySuccess() {
 
-		Double expectedTaxOneDay = 24D;
+		Double expectedTaxOneDay = 20D;
 		
 		LocalDateTime localDateTime = LocalDateTime.now().minusDays(1L);
 
