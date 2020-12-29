@@ -34,6 +34,8 @@ Application example using spring boot responsible for controlling vehicle parkin
 
 ## Solution
 
+This solution has the responsibility to exemplify in a practical way the adoption of automatic deployment at scale and application monitoring automatically.
+
 ### Services
 
 | Service Name             | Port       | Description                                       |
