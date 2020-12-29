@@ -64,6 +64,14 @@ For more details, please check [Jenkinsfile](Jenkinsfile).
 
 <img src="img/img_jenkins.png">
 
+### Sonar Qube
+
+SonarQube is an automatic code review tool to detect bugs, vulnerabilities, and code smells in your code.
+In this case, we use the tool to integrate with Jenkins through plugins with the intention of scanning the solution code.
+
+For analysis of coverage tests the jacoco plugin was used. For more details check the [pom.xml](pom.xml).
+
+<img src="img/sonar.png">
 
 ### Setup Containers
 
