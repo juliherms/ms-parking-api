@@ -71,7 +71,7 @@ In this case, we use the tool to integrate with Jenkins through plugins with the
 
 For analysis of coverage tests the jacoco plugin was used. For more details check the [pom.xml](pom.xml).
 
-<img src="img/sonar.png">
+<img src="img/sonar.PNG">
 
 ### Setup Containers
 
