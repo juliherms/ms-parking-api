@@ -76,6 +76,17 @@ For analysis of coverage tests the jacoco plugin was used. For more details chec
 
 <img src="img/sonar.PNG">
 
+### Prometheus
+
+Prometheus is a monitoring platform that collects metrics from monitored targets by scraping metrics HTTP endpoints
+
+To perform the API scrap we set up the [prometheus.yml](src/main/resources/prometheus.yml)
+
+In addition to configuring the yml file, it is necessary to enable the display of our API metrics through the [application.properties](src/main/resources/application.properties).
+
+<img src="img/prometheus.PNG">
+
+
 ### Setup Containers
 
 ```sh
