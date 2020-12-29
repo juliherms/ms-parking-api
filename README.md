@@ -58,6 +58,10 @@ Application example using spring boot responsible for controlling vehicle parkin
 
 ### Jenkins
 
+Jenkins is open source automation server. In this case, we set up the Jenkins file, which is responsible for customizing our automation pipeline.
+
+For more details, please check Jenkinsfile. [Configuration](Jenkinsfile)
+
 <img src="img/img_jenkins.png">
 
 
