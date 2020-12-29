@@ -3,6 +3,8 @@
 
 Application example using spring boot responsible for controlling vehicle parking
 
+*This project makes reference to the cloud parking API developed by Sandro Giacomozzi. The solution presented includes Docker, Jenkins, Sonar, Prometheus, Grafana and coverage tests
+
 ### Tools
 
 - Java SE Development Kit
