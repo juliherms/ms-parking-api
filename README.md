@@ -56,7 +56,7 @@ Application example using spring boot responsible for controlling vehicle parkin
 
 ### Jenkins
 
-<img src="img/img_jenkins.PNG">
+<img src="img/img_jenkins.png">
 
 
 ### Setup Containers
