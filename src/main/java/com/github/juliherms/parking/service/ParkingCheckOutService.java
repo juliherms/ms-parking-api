@@ -30,7 +30,7 @@ public class ParkingCheckOutService {
 			return ONE_HOUR_VALUE;
 		}
 
-		if (minutes <= TWENTY_FOUR_HOUR) {
+		if (minutes < TWENTY_FOUR_HOUR) {
 			bill = ONE_HOUR_VALUE;
 			int hours = (int) (minutes / ONE_HOUR);
 
