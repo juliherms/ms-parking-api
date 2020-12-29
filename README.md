@@ -53,9 +53,15 @@ Application example using spring boot responsible for controlling vehicle parkin
 | Jenkins                  | 8083       | Responsible to provide automatic build            |
 | Cloud Parking API        | 8080       | Management Parkings Solution                      |
 
+
+### Jenkins
+
+<img src="img/img_jenkins.PNG">
+
+
 ### Setup Containers
 
 ```sh
-	docker-compose up
+docker-compose up
 ```
 
