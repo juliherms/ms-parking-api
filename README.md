@@ -84,6 +84,12 @@ Grafana is a open source dashboard observability. In this case i used a promethe
 
 <img src="img/grafana.PNG">
 
+### Kubernetes
+
+Minikube is local Kubernetes, focusing on making it easy to learn and develop for Kubernetes.
+
+<img src="img/kubernetes.PNG">
+
 ### Setup Containers
 
 ```sh
