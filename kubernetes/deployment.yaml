@@ -5,6 +5,7 @@ metadata:
   labels:
     app: nginx
 spec:
+  #Configure POD replicas
   replicas: 3
   selector:
     matchLabels:
@@ -19,3 +20,17 @@ spec:
         image: nginx:1.14.2
         ports:
         - containerPort: 80
+        
+        volumeMounts:
+        - mountPath: /etc/nginx/conf.d
+          name: nginx-conf
+          readOnly: true
+
+      volumes: 
+      - name: nginx-conf
+        configMap:
+          name: nginx-conf
+          items:
+            - key: nginx.conf
+              path: nginx.conf  
+    
